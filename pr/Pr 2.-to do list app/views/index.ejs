@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+        }
+
+        .container {
+            width: 80%;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background: #cfe2ff;
+        }
+
+        form {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        form input,
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        form input:focus,
+        form select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+        }
+
+        form button {
+            display: block;
+            width: 150px;
+            margin: 0 auto;
+            padding: 10px;
+            background: #28a745;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        form button:hover {
+            background: #218838;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            border-radius: 3px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .btn.edit {
+            background: #007bff;
+        }
+
+        .btn.delete {
+            background: #dc3545;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Todo List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Status</th>
+                    <th>Deadline</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% tasks.map(task => { %>
+                    <tr>
+                        <td><%= task.task %></td>
+                        <td><%= task.status %></td>
+                        <td><%= task.deadline %></td>
+                        <td>
+                            <a href="/editTask?id=<%= task.id %>" class="btn edit">Edit</a>
+                            <a href="/deleteTask?id=<%= task.id %>" class="btn delete">Delete</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <form action="/addTask" method="POST">
+            <h2>Add Task</h2>
+            <label for="task">Task:</label>
+            <input placeholder="Add Task" type="text" name="task" required>
+
+            <label for="status">Status:</label>
+            <select name="status" required>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Completed">Completed</option>
+            </select>
+
+            <label for="deadline">Deadline:</label>
+            <input type="datetime-local" name="deadline" required>
+
+            <button type="submit" class="btn add">Add Task</button>
+        </form>
+    </div>
+</body>
+
+</html>

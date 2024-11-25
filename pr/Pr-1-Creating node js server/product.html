@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            background-color: #2a5298;
+            color: #f0f0f0;
+            padding: 0 20px;
+            line-height: 1.6;
+        }
+
+        /* Styling for the main title */
+        h1 {
+            margin-top: 40px;
+            color: #ffffff;
+            font-size: 3rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Product container styling */
+        .product {
+            margin: 20px auto;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Product image styling */
+        .product img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Product title styling */
+        .product h2 {
+            margin: 20px 0 10px;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        /* Product description */
+        .product p {
+            font-size: 1.2rem;
+            color: #555;
+            text-align: justify;
+        }
+
+        /* Price styling */
+        .price {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #ff7e5f;
+            margin: 15px 0;
+        }
+
+        /* Button styling */
+        .buy-now {
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #00c6ff, #0078d7);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Hover effect for the button */
+        .buy-now:hover {
+            background: linear-gradient(135deg, #0078d7, #00c6ff);
+            transform: scale(1.1);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer styling */
+        footer {
+            margin-top: 50px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #00c6ff;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ff7e5f;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .product h2 {
+                font-size: 1.8rem;
+            }
+
+            .product p {
+                font-size: 1rem;
+            }
+
+            .buy-now {
+                font-size: 1rem;
+                padding: 10px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Our Featured Product</h1>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/400" alt="Product Image">
+        <h2>Product Name</h2>
+        <p>
+            This is a fantastic product that offers exceptional quality and value. With its innovative design and top-notch materials, it's perfect for anyone looking to enhance their daily experience.
+        </p>
+        <p class="price">$49.99</p>
+        <a href="#" class="buy-now" aria-label="Buy Product Now">Buy Now</a>
+    </div>
+
+    <footer>
+        <p>© 2024 Your Company Name. All rights reserved.</p>
+        <p>
+            <a href="#home">Home</a> |
+            <a href="#products">Products</a> |
+            <a href="#contact">Contact</a>
+        </p>
+    </footer>
+
+</body>
+
+</html>

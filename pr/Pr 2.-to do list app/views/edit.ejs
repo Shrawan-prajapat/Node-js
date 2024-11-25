@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Task</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+        }
+
+        .container {
+            width: 80%;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background: #f4f4f4;
+        }
+
+        form {
+            margin-top: 2rem;
+        }
+
+        form label {
+            display: block;
+            margin: 1rem 0 0.5rem;
+        }
+
+        form input,
+        form select,
+        form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form button {
+            display: block;
+            width: 150px;
+            margin: 0 auto;
+            padding: 10px;
+            background: #28a745;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        form button:hover {
+            background: #218838;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            border-radius: 3px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .btn.edit {
+            background: #007bff;
+        }
+
+        .btn.delete {
+            background: #dc3545;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Edit Task</h1>
+        <form action="/updateTask" method="POST">
+            <input type="hidden" name="id" value="<%= task.id %>">
+            <label for="task">Task:</label>
+            <input type="text" name="task" value="<%= task.task %>" required>
+            <label for="status">Status:</label>
+            <select name="status" required>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Completed">Completed</option>
+            </select>
+            <label for="deadline">Deadline:</label>
+            <input type="datetime-local" name="deadline" value="<%= task.deadline %>" required>
+            <button type="submit" class="btn update">Update Task</button>
+        </form>
+    </div>
+</body>
+
+</html>
