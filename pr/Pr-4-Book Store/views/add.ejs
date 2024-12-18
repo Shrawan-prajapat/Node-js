@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,103 +8,65 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-image: url('./img/book.jpeg');
-            background-size: cover;
-            background-color: #121212; /* Dark background fallback */
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
             color: #e0e0e0;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             height: 100vh;
-            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
         }
 
         .card {
-            background-color: #1e1e1e; /* Darker card background */
-            color: #e0e0e0; /* Light text */
-            border: 1px solid #333;
-            border-radius: 15px;
-            overflow: hidden;
-            transform: scale(0.95);
-            opacity: 0;
-            animation: fadeInUp 0.6s ease forwards;
+            background: linear-gradient(145deg, #2b2b2b, #1e1e1e);
+            color: #ffffff;
+            border: 2px solid #444;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+            animation: fadeInUp 0.7s ease-in-out;
+        }
+
+        .card h1 {
+            color: #ffcc80; /* Light Orange */
+            font-weight: bold;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-control {
+            background-color: #333333;
+            color: #ffffff;
+            border: 1px solid #555;
+            border-radius: 10px;
             transition: all 0.3s ease;
         }
 
-        .card:nth-child(even) {
-            animation-delay: 0.2s;
-        }
-
-        .card:nth-child(odd) {
-            animation-delay: 0.4s;
-        }
-
-        /* Hover Effects for Card */
-        .card:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
-            background-color: #2c2c2c; /* Slightly darker on hover */
-        }
-
-        .card-title,
-        .card-text {
-            color: #e0e0e0;
-        }
-
-        /* Button Hover Effects */
-        .btn {
-            transition: all 0.3s ease;
+        .form-control:focus {
+            box-shadow: 0 0 10px #ffcc80;
+            border-color: #ff9800;
         }
 
         .btn-primary {
-            background-color: #007bff;
+            background-color: #ff9800;
             border: none;
+            color: #fff;
+            transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
-            background-color: #0056b3;
-            transform: scale(1.1);
+            background-color: #e67e22;
+            transform: scale(1.05);
         }
 
-        .btn-danger {
-            background-color: #dc3545;
-            border: none;
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+            transition: all 0.3s ease;
         }
 
-        .btn-danger:hover {
-            background-color: #b02a37;
-            transform: scale(1.1);
-        }
-
-        .btn-success {
-            background-color: #28a745;
-            border: none;
-        }
-
-        .btn-success:hover {
-            background-color: #218838;
-            transform: scale(1.1);
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .header h1 {
-            font-size: 3rem;
-            color: #ffffff;
-            animation: fadeInDown 1s ease;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: scale(1.05);
         }
 
         @keyframes fadeInUp {
@@ -119,45 +82,47 @@
         }
     </style>
 </head>
+
 <body>
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4 shadow-lg" style="width: 100%; max-width: 600px;">
-        <h1 class="mb-4 text-center">Add New Book</h1>
-        <form action="/insertrecord" method="post" >
-            
-            <!-- Book Name -->
-            <div class="mb-3">
-                <label for="name" class="form-label">Book Name:</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter book name" required aria-label="Book Name">
-            </div>
+    <div class="container">
+        <div class="card p-4 shadow-lg mx-auto" style="max-width: 600px;">
+            <h1 class="text-center mb-4">Add New Book</h1>
+            <form action="/insertrecord" method="post">
 
-            <!-- Book Price -->
-            <div class="mb-3">
-                <label for="price" class="form-label">Book Price:</label>
-                <input type="number" class="form-control" id="price" name="price" placeholder="Enter book price" required aria-label="Book Price">
-            </div>
+                <!-- Book Name -->
+                <div class="mb-4">
+                    <label for="name" class="form-label">Book Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="E.g., The Great Gatsby" required>
+                </div>
 
-            <!-- Book Pages -->
-            <div class="mb-3">
-                <label for="pages" class="form-label">Book Pages:</label>
-                <input type="number" class="form-control" id="pages" name="pages" placeholder="Enter number of pages" required aria-label="Book Pages" min="1">
-            </div>
+                <!-- Book Price -->
+                <div class="mb-4">
+                    <label for="price" class="form-label">Book Price</label>
+                    <input type="number" class="form-control" id="price" name="price" placeholder="E.g., 499" required>
+                </div>
 
-            <!-- Book Author -->
-            <div class="mb-3">
-                <label for="author" class="form-label">Book Author:</label>
-                <input type="text" class="form-control" id="author" name="author" placeholder="Enter author name" required aria-label="Book Author">
-            </div>
+                <!-- Book Pages -->
+                <div class="mb-4">
+                    <label for="pages" class="form-label">Book Pages</label>
+                    <input type="number" class="form-control" id="pages" name="pages" placeholder="E.g., 350" min="1" required>
+                </div>
 
-            <!-- Buttons -->
-            <div class="d-flex justify-content-between mt-4">
-                <button type="submit" class="btn btn-primary">Add Book</button>
-                <a href="/" class="btn btn-secondary">View Books</a>
-            </div>
-        </form>
+                <!-- Book Author -->
+                <div class="mb-4">
+                    <label for="author" class="form-label">Book Author</label>
+                    <input type="text" class="form-control" id="author" name="author" placeholder="E.g., F. Scott Fitzgerald" required>
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary px-4">Add Book</button>
+                    <a href="/" class="btn btn-secondary px-4">View Books</a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
