@@ -1,0 +1,41 @@
+<%- include('../header') %>
+
+<div class="container-fluid py-4">
+
+
+  <% if (locals?.message?.success) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= locals?.message?.success %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
+
+  <div class="row ">
+    <div class="col-md-4">
+      <div class="card shadow-lg">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
+              <h6 class="text-white text-capitalize ps-3">Edit category</h6>
+            </div>
+          </div>
+        <div class="card-body">
+          <form method="post" action="/category/updateCategory">
+            <input type="hidden" name="editid" value="<%= single?.id %>">
+            <div class="mb-3">
+           
+              <input type="text" name="category" value="<%= single?.category %>" class="form-control" placeholder="Enter category name" required>
+            </div>
+          <div class="d-grid">
+  <button type="submit" class="btn btn-dark bg-gradient shadow-lg rounded-pill px-4 py-2 fw-bold text-white">
+    Submit
+  </button>
+</div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../footer') %>

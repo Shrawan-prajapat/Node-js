@@ -1,0 +1,54 @@
+<%- include('../header') %>
+
+<div class="container-fluid py-4">
+
+
+  <% if (locals?.message?.success) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= locals?.message?.success %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
+
+  <div class="row ">
+    <div class="col-md-4">
+      <div class="card shadow-lg">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
+              <h6 class="text-white text-capitalize ps-3">Add Subcategory</h6>
+            </div>
+          </div>
+        <div class="card-body">
+          <form method="post" action="/subcategory/insertsubcategory">
+            <div class="form-group row">
+              <label for="fname"
+                  class="col-sm-3 text-dark text-right control-label col-form-label">Category:-</label>
+              <div class="col-sm-9 ">
+                  <select name="category" class="form-control shadow-lg p-2 mb-3 bg-body-tertiary rounded">
+                      <option>---select category---</option>
+                      <% category.map((cat,index)=>{ %>
+                          <option value="<%= cat?.id %>">
+                              <%= cat?.category %>
+                          </option>
+                          <% }) %>
+                  </select>
+              </div>
+          </div>
+            <div class="mb-3">
+           <label for="" class="text-dark">Subcatagory:- </label>
+              <input type="text" name="subcategory" class="form-control  shadow-lg p-2 mb-2 bg-body-tertiary rounded" placeholder="Enter subcategory name" required>
+            </div>
+          <div class="d-grid">
+  <button type="submit" class="btn btn-dark bg-gradient shadow-lg rounded-pill px-4 py-2 fw-bold text-white">
+    Submit
+  </button>
+</div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../footer') %>
