@@ -1,0 +1,113 @@
+<%- include('../header') %>
+
+<div class="container-fluid py-4">
+
+
+  <% if (locals?.message?.success) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= locals?.message?.success %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
+
+  <div class="row ">
+    <div class="col-md-4">
+      <div class="card shadow-lg">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
+              <h6 class="text-white text-capitalize ps-3">Edit Subcategory</h6>
+            </div>
+          </div>
+        <div class="card-body">
+          <form method="post" action="/exsubcategory/updateexsubCategory">
+            <input type="hidden" name="editid" value="<%= single?.id %>" />
+            <div class="form-group row">
+              <label for="fname"
+                  class="col-sm-3 text-dark text-right control-label col-form-label">Category:-</label>
+              <div class="col-sm-9 ">
+                  <select name="category" class="form-control shadow-lg p-2 mb-3 bg-body-tertiary rounded">
+                    <option>---select category---</option>
+                    <% category.map((cat,index)=>{ %>
+                        <option <% if(single?.categoryId.category==cat?.category) { %>
+                            selected
+                            <% } %> value="<%= cat?.id %>">
+                                    <%= cat?.category %>
+                        </option>
+                          <% }) %>
+                  </select>
+              </div>
+          </div>
+          <div class="form-group row">
+            <label for="fname"
+                class="col-sm-3 text-dark text-right control-label col-form-label">Category:-</label>
+            <div class="col-sm-9 ">
+                <select name="subcategory" class="form-control shadow-lg p-2 mb-3 bg-body-tertiary rounded">
+                  <option>---select category---</option>
+                  <% subcategory.map((subcat,index)=>{ %>
+                    <option <% if(single?.subcategoryId.subcategory==subcat?.subcategory) { %>
+                        selected
+                        <% } %> value="<%= subcat?.id %>">
+                                <%= subcat?.subcategory %>
+                    </option>
+                      <% }) %>
+                </select>
+            </div>
+        </div>
+            <div class="mb-3">
+           <label for="" class="text-dark">Exubcatagory:- </label>
+              <input type="text" name="exsubcategory" value="<%= single?.exsubcategory %>" class="form-control  shadow-lg p-2 mb-2 bg-body-tertiary rounded" placeholder="Enter category name" required>
+            </div>
+          <div class="d-grid">
+  <button type="submit" class="btn btn-dark bg-gradient shadow-lg rounded-pill px-4 py-2 fw-bold text-white">
+    Submit
+  </button>
+</div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+    const getSingleCategory = () => {
+        let categoryid = `<%= single?.categoryId.id %>`;
+        $.ajax({
+            type: 'get',
+            url: `/exsubcategory/ajaxcategorywiserecord?categoryId=${categoryid}`,
+            success: function (res) {
+                let subcategory = res.subcategory;
+                let tbl = '<option value="" disabled selected>Select a subcategory</option>';
+                subcategory.map((subcate) => {
+                    tbl += `<option value="${subcate?._id}" ${subcate?._id === "<%= single?.subcategoryId?._id %>" ? 'selected' : ''}>
+                            ${subcate?.subcategory}
+                    </option>`;
+                });
+                document.getElementById('subcategory').innerHTML = tbl;
+            }
+        });
+    }
+    getSingleCategory();
+
+    const categoryRecord = () => {
+        let categoryid = document.getElementById('category').value;
+        $.ajax({
+            type: "GET",
+            url: `/exsubcategory/ajaxcategorywiserecord?categoryId=${categoryid}`,
+            success: function (res) {
+                let category = res.category;
+                let tbl = "";
+                tbl += `<option value = "">---select subcategory---</option > `
+                category.map((cat, index) => {
+                    tbl += `<option   value = '${cat?._id}' > ${cat?.subcategory}</option >`
+                })
+                document.getElementById('subcategory').innerHTML = tbl
+            }
+        })
+
+    }
+</script>
+<%- include('../footer') %>
