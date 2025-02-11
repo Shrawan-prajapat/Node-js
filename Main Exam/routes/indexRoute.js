@@ -14,8 +14,6 @@ const st = multer.diskStorage({
 const fileupload = multer({ storage: st }).single('avatar');
 const routes=express.Router();
 routes.use('/',require('./AuthRoute'))
-routes.use('/category',require('./CategoryRoute'));
-routes.use('/subcategory',require('./SubcategoryRoute'));
-routes.use('/exsubcategory',require('./ExsubcategoryRoute'));
+
 routes.use('/product',fileupload,require('./ProductRoute'));
 module.exports=routes

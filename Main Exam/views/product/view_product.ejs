@@ -2,61 +2,33 @@
 
 <div class="container-fluid py-2">
   <div class="row">
+    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+      <div class="bg-dark border-radius-lg pt-4 pb-3">
+        <h6 class="text-white text-capitalize ps-3">View Product</h6>
+      </div>
     <div class="col-12">
-      <div class="card my-4">
-        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-          <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-            <h6 class="text-white text-capitalize ps-3">View Product</h6>
-          </div>
-        </div>
-        <div class="card-body px-0 pb-2">
-          <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">Id</th>
-                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">Image</th>
-                  <th class="text-uppercase text-dark text-xxs font-weight-bolder ps-2">Product</th>
-                  <th class="text-uppercase text-dark text-xxs font-weight-bolder ps-2">Exsubcategory</th>
-                  <th class="text-uppercase text-dark text-xxs font-weight-bolder ps-2">Subcategory</th>
-                  <th class="text-uppercase text-dark text-xxs font-weight-bolder ps-2">Category</th>
-                  <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Action</th>
-                  <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% products.map((product, i) => { %>
-                  <tr>
-                    <td class="text-center">
-                      <h6 class="mb-0 text-sm"><%= i + 1 %></h6>
-                    </td>
-                    <td>
-                      <img src="<%= product?.image %>" alt="Product Image" width="70px" height="70px" class="rounded">
-                    </td>
-                    <td><%= product?.name %></td>
-                    <td><%= product?.exsubcategoryId?.exsubcategory %></td>
-                    <td><%= product?.subcategoryId?.subcategory %></td>
-                    <td><%= product?.categoryId?.category %></td>
-                    <td class="align-middle text-center">
-                      <a href="/product/editproduct?id=<%= product?.id %>" class="btn btn-sm btn-info mx-1">Edit</a>
-                      <a href="/product/deleteproduct?id=<%= product?.id %>" class="btn btn-sm btn-danger mx-1">Delete</a>
-                    </td>
-                    <td class="align-middle text-center">
-                      <% if (product?.status === "active") { %>
-                        <a href="/product/changestatus?id=<%= product?.id %>&status=deactive" class="btn btn-success btn-sm">Active</a>
-                      <% } else { %>
-                        <a href="/product/changestatus?id=<%= product?.id %>&status=active" class="btn btn-danger btn-sm">Deactive</a>
-                      <% } %>
-                    </td>
-                  </tr>
-                <% }) %>
-              </tbody>
-            </table>
+      <div class="card my-4 border-0">
+        <div class="card-body px-4 pb-2">
+          <div class="row">
+            <% products.map((product, i) => { %>
+              <div class="col-md-4 mb-4">
+                <div class="card shadow-lg border-0">
+                  <img src="<%= product?.image %>" class="card-img-top rounded-top" alt="Product Image" style="height: 200px; object-fit: cover;">
+                  <div class="card-body text-center bg-light">
+                    <h5 class="card-title text-dark fw-bold mb-1"><%= product?.name %></h5>
+                    <p class="card-text text-secondary"><%= product?.description %></p>
+                    <p class="card-text text-success fw-bold"><%= product?.price %> Rs.</p>
+                    <div class="d-flex justify-content-center gap-2">
+                      <a href="/product/editproduct?id=<%= product?.id %>" class="btn btn-sm btn-outline-primary">Edit</a>
+                      <a href="/product/deleteproduct?id=<%= product?.id %>" class="btn btn-sm btn-outline-danger">Delete</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<%- include('../footer') %>

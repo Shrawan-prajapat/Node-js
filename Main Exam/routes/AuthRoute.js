@@ -5,14 +5,11 @@ const { loginpage, registerpage, registerUser, dashboardPage, loginUser, Logout,
 const passport=require('passport')
 routes.get('/',loginpage)
 routes.get('/register',registerpage)
-routes.get('/dashboard',passport.checkUser,dashboardPage)
+routes.get('/dashboard',dashboardPage)
 routes.post('/registeruser',registerUser)
 routes.post('/loginuser',passport.authenticate('local',{failureRedirect:'/'}),loginUser)
 routes.get('/logout',Logout)
-routes.get('/otp',otppage)
-routes.get('/forgotpass',forgotpass)
-routes.post('/forgotpassword',forgotpassword)
-routes.post('/userotp',userOtp)
-routes.post('/usernewpass',usernewPass)
+
+
 
 module.exports=routes

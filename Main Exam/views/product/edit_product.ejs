@@ -13,71 +13,27 @@
   <div class="row ">
     <div class="col-md-4">
       <div class="card shadow-lg">
-        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-            <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-              <h6 class="text-white text-capitalize ps-3">Edit Product</h6>
-            </div>
-          </div>
+      </div>
+      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+        <div class="bg-dark border-radius-lg pt-4 pb-3">
+          <h6 class="text-white text-capitalize ps-3">Edit Product</h6>
+        </div>
         <div class="card-body">
           <form method="post" action="/product/updateproduct" enctype="multipart/form-data">
             <input type="hidden" name="editid" value="<%= single?.id %>" />
-            <input type="hidden" value="" name="">
-            <div class="form-group row">
-              <label for="fname"
-                  class="col-sm-3 text-dark text-right control-label col-form-label">Category:-</label>
-              <div class="col-sm-9 ">
-                  <select name="category" id="category" onchange="categoryRecord()" class="form-control shadow-lg p-2 mb-3 bg-body-tertiary rounded">
-                      <option>---select category---</option>
-                      <% category.map((cat,index)=>{ %>
-                        <option 
-                        <% if (single?.categoryId?.category === cat?.category) { %> 
-                          selected 
-                        <% } %> 
-                        value="<%= cat?.id %>">
-                        <%= cat.category %>
-                      </option>
-                          <% }) %>
-                  </select>
-              </div>
-          </div>
-          <div class="form-group row">
-            <label for="fname"
-                class="col-sm-4 text-dark text-right control-label col-form-label">Subcategory:-</label>
-            <div class="col-sm-9 ">
-                <select name="subcategory" id="subcategory" onchange="subcategoryRecord()" class="form-control shadow-lg p-2 mb-3 bg-body-tertiary rounded">
-                  <option value=" <%= single.subcategory %>" disabled selected>Select a subcategory</option>
-                    <% subcategory.map((subcat) => { %>
-                      <option 
-                        <% if (single?.subcategoryId?.subcategory === subcat?.subcategory) { %> 
-                          selected 
-                        <% } %> 
-                        value="<%= subcat?.id %>">
-                        <%= subcat.subcategory %>
-                      </option>
-                      <% }) %>
-                </select>
-            </div>
-        </div>
-        <div class="mb-3">
-            <label class="text-dark">Exsubcategory:</label>
-            <select name="exsubcategory" id="exsubcategory" class="form-control shadow-lg p-2 mb-2 bg-body-tertiary rounded">
-              <option value="" disabled selected>Select a exsubcategory</option>
-              <% exsubcategory.map((exsubcat) => { %>
-                <option 
-                  <% if (single?.exsubcategoryId?.exsubcategory === exsubcat?.exsubcategory) { %> 
-                    selected 
-                  <% } %> 
-                  value="<%= exsubcat?.id %>">
-                  <%= exsubcat.exsubcategory %>
-                </option>
-              <% }); %>
-            </select>
-          </div>
+            
+           
+       
+      
           
             <div class="mb-3">
                 <label for="" class="text-dark">Product:- </label>
                    <input type="text" name="name" value="<%= single.name %>" class="form-control  shadow-lg p-2 mb-2 bg-body-tertiary rounded" placeholder="Enter product name" required>
                  </div>
+                 <div class="mb-3">
+                  <label for="" class="text-dark">Qty:- </label>
+                     <input type="number" name="qty" value="<%= single.qty %>" class="form-control  shadow-lg p-2 mb-2 bg-body-tertiary rounded" placeholder="Enter product price" required>
+                   </div>
                  <div class="mb-3">
                     <label for="" class="text-dark">Price:- </label>
                        <input type="number" name="price" value="<%= single.price %>" class="form-control  shadow-lg p-2 mb-2 bg-body-tertiary rounded" placeholder="Enter product price" required>
@@ -140,4 +96,3 @@
     }
 </script>
 
-<%- include('../footer') %>

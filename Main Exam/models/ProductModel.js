@@ -2,20 +2,13 @@ const { name } = require('ejs');
 const mongoose = require('mongoose');
 
 const productSchema = mongoose.Schema({
-    categoryId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'category'
-    },
-    subcategoryId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'subcategory'
-    },
-    exsubcategoryId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'exsubcategory'
-    },
+   
     name: {
         type: String,
+        required: true
+    },
+    qty: {
+        type: Number,
         required: true
     },
     price: {

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb://localhost/admin-panel-passport`);
+mongoose.connect(`mongodb://localhost/exam`);
 
 const db = mongoose.connection;
 
