@@ -1,3 +1,4 @@
+const { log } = require('console');
 const Blog = require('../models/BlogModel');
 const fs = require('fs')
 const addBlog = async (req, res) => {
@@ -78,9 +79,18 @@ const adminDeleteBlog = async (req, res) => {
 }
 const updateBlog = async (req, res) => {
     try {
-        const { id, title, content } = req.body;
+      
+        const { id, title, content,image } = req.body;
+
+
+        let singleblog = await Blog.findById(id);
+        if (!singleblog) {
+            return res.status(400).send({
+                success: false,
+                message: "Blog Not Found"
+            });
+        }
         if (req.file) {
-            let singleblog = await Blog.findById(id);
             fs.unlinkSync(singleblog?.image);
             await Blog.findByIdAndUpdate(id, {
                 title: title,
@@ -103,6 +113,8 @@ const updateBlog = async (req, res) => {
                 message: "Blog is successfully updated"
             })
         }
+        log(req.flie);
+
 
     } catch (err) {
         return res.status(501).send({
@@ -113,9 +125,11 @@ const updateBlog = async (req, res) => {
 }
 const userwiseDeleteBlog = async (req, res) => {
     try {
-        let blogid = req.query?.blogid;
+        let blogid = req.query?.id;
+        console.log(blogid);
+
         let singleblog = await Blog.findById(blogid);
-        let user = await Blog.find({ userId: singleblog?.userId });        
+        let user = await Blog.find({ userId: singleblog?.userId });
         if (user.length === 0) {
             return res.status(404).send({
                 success: false,
